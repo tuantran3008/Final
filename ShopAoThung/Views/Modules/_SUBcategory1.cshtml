@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ShopAoThung.Models.Mcategory>
+@{
+    var menuitem = ViewBag.category;
+}
+<li>
+    <a href="~/san-pham/@menuitem.slug">@menuitem.name <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+    <ul class="sub-category">
+        @foreach (var list in Model)
+        {
+            <li><a href="~/san-pham/@menuitem.slug">@list.name</a></li>
+        }
+
+    </ul>
+</li>

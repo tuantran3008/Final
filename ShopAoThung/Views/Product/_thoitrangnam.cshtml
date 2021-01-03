@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ShopAoThung.Models.Product>
+<div class="tab-single">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            int sale = (int)item.pricesale;
+            float price = (int)item.price - (int)item.price / 100 * (int)sale;
+            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                <div class="single-product">
+                    <div class="product-img">
+                        <a href="~/chi-tiet-san-pham/@item.slug">
+                            <img class="default-img" src="~/public/images/product/@item.img" alt="#">
+                            <img class="hover-img" src="~/public/images/product/@item.img" alt="#">
+                        </a>
+                        <div class="button-head">
+                            <div class="product-action">
+                                <a data-toggle="modal" data-target="#exampleModal" title="Xem thêm" href="~/chi-tiet-san-pham/@item.slug"><i class=" ti-eye"></i><span>Xem thêm</span></a>
+                            
+                            </div>
+                            <div class="product-action-2">
+                                <a title="Add to cart" href="javascript:void(0)" onclick="addcartHome(@item.ID)">Thêm vào giỏ hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3><a href="~/chi-tiet-san-pham/@item.slug">@item.name</a></h3>
+                        <div class="product-price">
+                            @if (sale > 0)
+                            {
+
+                                <div class="info-product-price">
+                                    <span class="item_price">@price.ToString("N0") Đ</span>
+                                    <del>@item.price.ToString("N0") Đ</del>
+                                </div> }
+                            else
+                            {
+                                <div class="info-product-price">
+                                    <span class="item_price">@item.price.ToString("N0") Đ</span>
+                                    <del>@item.price.ToString("N0") Đ</del>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,98 @@
+﻿@model ShopAoThung.Models.Muser
+<form action="~/Custommer/Edit" id="form_editprofile" method="POST">
+    <div class="login-form">
+
+        <div class="row">
+            <div class="col-lg-6 mb--20">
+                <label for="email">Tên đăng nhập (không dấu và ký tự đặc biệt)</label>
+                <input type="hidden" name="ID" value="@Model.ID">
+                <input type="hidden" name="gender" value="@Model.gender">
+                <input class="mb-0 form-control" type="text" placeholder="Tên Đăng Nhập" value="@Model.username" name="username" required>
+
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="fullname">Tên đầy đủ</label>
+                <input type="text" class="mb-0 form-control" placeholder="Tên Đầy Đủ" name="fullname" value="@Model.fullname" required>
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="email">Email</label>
+                <input class="mb-0 form-control" type="email" id="email" name="email" value="@Model.email" placeholder="Nhập Email của bạn." required>
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="email">SDT</label>
+                <input class="mb-0 form-control" type="tel" name="phone" value="@Model.phone" placeholder="Nhập SDT của bạn." required>
+            </div>
+            <div class="col-12 mb--20">
+                <label for="email">Địa chỉ</label>
+                <input class="mb-0 form-control" type="text" name="address" value="@Model.address" placeholder="Nhập Địa chỉ của bạn." required>
+            </div>
+            <div class="col-12  mb--30">
+                <h4>Thay đổi mật khẩu</h4>
+            </div>
+            <div class="col-12  mb--30">
+                <input id="current-pwd" placeholder="Mậ tkhẩu cũ" name="password"
+                       type="password">
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="password">Mật khẩu</label>
+                <input class="mb-0 form-control" type="password"  name="psw" id="psw" placeholder="Nhập mật khẩu" required>
+            </div>
+            <div class="col-lg-6 mb--20">
+                <label for="password">Nhập lại mật khẩu</label>
+                <input class="mb-0 form-control" type="password" id="repeat-password" name="repsw" placeholder="Nhập lại mật khẩu" required>
+                <span class="text-danger" id="error"></span>
+            </div>        
+            <div class="col-md-12">
+                <button type="button" onclick="editProfile()" class="btn btn-outlined">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    function editProfile() {
+
+        var pass1 = $("#psw").val();
+        var pass2 = $("#repeat-password").val();
+
+        if (pass1 != pass2) {
+            $("#error").text("2 mật khẩu không khớp");
+        
+            return false;
+        }        
+
+        var data = $("#form_editprofile").serialize();
+        $.ajax({
+            url: '/Customer/Edit',
+            type: 'POST',
+            data: data,
+            dataType: 'json', 
+            success: function (data) {
+                if (data.statuss == 1) {
+                    alertify.error("<span class='font-weight-bold'>Thông báo: </span>Mật khẩu không đúng");
+                    return false;
+                }
+                else if (data.statuss == 2) {
+                    alertify.error("<span class='font-weight-bold'>Thông báo: </span>Tên đăng nhập đã tồn tại");
+                    return false;
+                }
+                else if (data.statuss == 3) {
+                    alertify.error("<span class='font-weight-bold'>Thông báo: </span>Cập nhật thất bại");
+                    return false;
+                }
+                else {
+                    $("#unameSess").text(data.username);
+                    $("#1_fullname").text(data.fullname);
+                    $("#2_fullname").text(data.fullname);
+                    alertify.success("<span class='font-weight-bold'>Thông báo:</span> Cập nhật thành công");
+                }
+             
+            },
+            error: function (e) {
+                alertify.error("<span class='font-weight-bold'>Thông báo: </span>Lỗi: " + e.statusText);
+                return false;
+            }
+        })
+    }
+</script>

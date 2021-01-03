@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layoutSite.cshtml";
+}
+
+<!--/ End Header -->
+<!-- Slider Area -->
+@Html.Action("_slider", "Modules")
+
+<!--/ End Slider Area -->
+<!-- Start Small Banner  -->
+<!-- End Small Banner -->
+<!-- Start Product Area -->
+<div class="product-area section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h3><span>SẢN PHẨM </span>MỚI</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="product-info">
+                    <div class="nav-main">
+                        <!-- Tab Nav -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#man" role="tab">TÚI NAM</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#women" role="tab">TÚI NỮ</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#kids" role="tab">TÚI TRẺ EM</a></li>
+
+                        </ul>
+                        <!--/ End Tab Nav -->
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade show active" id="man" role="tabpanel">
+                            @Html.Action("_thoitrangnam", "Product")
+                        </div>
+                        <!--/ End Single Tab -->
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade" id="women" role="tabpanel">
+                            @Html.Action("_thoitrangnu", "Product")
+                        </div>
+                        <!--/ End Single Tab -->
+                        <!-- Start Single Tab -->
+                        <div class="tab-pane fade" id="kids" role="tabpanel">
+                            @Html.Action("_thoitrangtreem", "Product")
+                        </div>
+                        <!--/ End Single Tab -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Product Area -->
+<!-- Start Most Popular -->
+<div class="product-area most-popular section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>SẢN PHẨM BÁN CHẠY</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="owl-carousel popular-slider">
+                    @Html.Action("_SanphamBanchay", "Product")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#mainmenu').show();
+</script>

@@ -1,0 +1,46 @@
+﻿
+<section class="clearfix header ">
+    <div class=" ">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger  ">
+            <a class="navbar-brand" href="#">MENU</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="pl-3 nav-link" href="~/Admin"> Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="pl-3 nav-link" href="~/Admin/Category"> Loại sản phẩm</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="pl-3 nav-link" href="~/Admin/Product"> Sản phẩm</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="pl-3 nav-link" href="~/Admin/Orders"> Đơn hàng</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="pl-3 nav-link" href="~/Admin/User"> User</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="pl-3 nav-link" href="~/Admin/Slider"> Ảnh bìa</a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item form-inline text-light">
+                    <span class="badge badge-dark">
+                        Xin Chào: <?php
+                        echo $_SESSION["user_fullname"];
+                        ?>
+                    </span>
+                    <a class="nav-link disabled active   " href="logout.php"><button class="btn btn-sm btn-outline-light" type="">Logout</button> </a>
+
+                </li>
+            </ul>
+        </nav>
+    </div>

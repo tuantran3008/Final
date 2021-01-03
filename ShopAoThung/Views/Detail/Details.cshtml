@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_layoutSite.cshtml";
+}
+@{
+    int sale = (int)Model.pricesale;
+    float price = (int)Model.price - (int)Model.price / 100 * (int)sale;
+}
+<div class=" ">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bread-inner">
+                        <ul class="bread-list">
+                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="blog-single.html">Shop Grid</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container  pt-2">
+    <div class=" row border">
+
+
+        <div class="col-md-6 my-3">
+            <div class="side-bar ">
+                <!--preference -->
+                <div class="left-side danhmuc ">
+                    <ul class="slides">
+                        <li data-thumb="images/lady_trang1.jpg">
+                            <div class="thumb-image"> <img src="~/public/images/product/@Model.img" data-imagezoom="true" class="img-responsive"> </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 my-3 p-3">
+
+
+            <div class=""> <h3 class="text-orange">@Model.name</h3></div>
+
+            @if (sale > 0)
+            {
+        <div class="pt-5">
+            <h5>Giá Chưa KM <del style="font-size:20px"> @Model.price.ToString("N0") Đ</del></h5>
+           
+            <h4 class="item_price text-danger pt-2">Giá Sản phẩm: @price.ToString("N0") Đ</h4>
+
+        </div>
+            }
+            else
+            {
+                <span class="item_price">@Model.price.ToString("N0") Đ</span>
+                <del>@Model.price.ToString("N0") Đ</del>
+            }
+
+            <div class="quantity p-3">
+                <h5 class="pt-2">Số lượng :</h5>
+                <select id="country1" onchange="change_country(this.value)" class="frm-field required sect w-100 pt-2">
+                    <option value="null">1</option>
+                    <option value="null">2</option>
+                    <option value="null">3</option>
+                    <option value="null">4</option>
+                    <option value="null">5</option>
+                </select>
+            </div>
+
+
+            <div class="p-5">
+            <button class="btn btn-sm btn-primary w-100" onclick="addcartHome(@Model.ID)">Thêm vào giỏ</button></div>
+          
+
+            <h5 class="my-2" style="text-transform:uppercase;">Thông tin mô tả</h5>
+            <p style="line-height:30px">@Html.Raw(Model.detail) </p>
+        </div>
+    </div>
+    <div class="product-area most-popular section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Sản phẩm bán chạy</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="owl-carousel popular-slider">
+                        @Html.Action("_SanphamBanchay", "Product")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

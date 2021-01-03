@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ShopAoThung.Models.Mcategory>
+
+@foreach (var list in Model)
+{
+    @Html.Action("_subMancategory", "Modules", new { parentid = list.ID })
+
+}
+
+
